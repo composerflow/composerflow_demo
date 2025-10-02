@@ -49,27 +49,7 @@ td, th { padding: 12px; }
   .lyrics-col { min-width: 160px; }
   .model-col { min-width: 280px; }
 }
-/* --- Beef up the native audio UI (Chromium) --- */
-audio {
-  height: 48px;                 /* bigger click target */
-}
-audio::-webkit-media-controls-enclosure {
-  border-radius: 12px;
-  overflow: hidden;
-}
-audio::-webkit-media-controls-panel {
-  padding: 6px 8px;             /* spacing around controls */
-}
-audio::-webkit-media-controls-timeline {
-  height: 12px !important;      /* 👈 thicker seek bar */
-  margin: 0 10px;
-}
-audio::-webkit-media-controls-mute-button,
-audio::-webkit-media-controls-play-button,
-audio::-webkit-media-controls-time-remaining-display,
-audio::-webkit-media-controls-current-time-display {
-  margin: 0 4px;
-}
+
 </style>
 </head>
 
