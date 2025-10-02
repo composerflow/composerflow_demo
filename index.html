@@ -19,6 +19,36 @@ td {
       padding: 10px;
       text-align: center;
 }
+/* Keep text readable and give players room */
+.model-col { min-width: 320px; }       /* wider columns for players */
+.model-col audio { width: 100%; }      /* player fills the cell */
+.lyrics-col { min-width: 180px; }
+.prompt-col { min-width: 280px; }
+
+/* Prevent wrapping that shrinks the player scrubber */
+.nowrap { white-space: nowrap; }
+
+/* Sticky first columns so users can see which row they’re on */
+.sticky-col-1, .sticky-col-2 {
+  position: sticky;
+  left: 0;
+  background: #fff;
+  z-index: 2;
+}
+.sticky-col-2 { left: 60px; } /* width of the first (#) column */
+
+/* Make header stay on top over sticky cells */
+thead th { position: sticky; top: 0; z-index: 3; background: #f8f9fa; }
+
+/* Improve touch targets in cells */
+td, th { padding: 12px; }
+
+/* On small screens, allow vertical stacking of meta cells */
+@media (max-width: 992px) {
+  .prompt-col { min-width: 240px; }
+  .lyrics-col { min-width: 160px; }
+  .model-col { min-width: 280px; }
+}
 
 </style>
 </head>
@@ -56,14 +86,14 @@ td {
       <caption class="text-left">Side-by-side comparison of five music generation models per prompt and lyrics.</caption>
       <thead class="thead-light">
         <tr>
-          <th style="min-width:60px;">#</th>
-          <th style="min-width:260px;">Global Style Prompt</th>
-          <th style="min-width:140px;">Lyrics</th>
-          <th style="min-width:260px;">ComposerFlow<br></th>
-          <th style="min-width:260px;">Acestep<br></th>
-          <th style="min-width:260px;">DiffRhythm<br></th>
-          <th style="min-width:260px;">Levo<br></th>
-          <th style="min-width:260px;">Suno<br></th>
+          <th class="sticky-col-1" style="min-width:60px;">#</th>
+          <th class="sticky-col-2 prompt-col">Global Style Prompt</th>
+          <th class="lyrics-col">Lyrics</th>
+          <th class="model-col">ComposerFlow</th>
+          <th class="model-col">Acestep</th>
+          <th class="model-col">DiffRhythm</th>
+          <th class="model-col">Levo</th>
+          <th class="model-col">Suno</th>
         </tr>
       </thead>
       <tbody>
