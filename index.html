@@ -29,7 +29,7 @@ td {
   <h1 class="display-4 mb-3">ComposerFlow</h1>
   <section aria-label="Paper abstract" class="mb-4">
     <h2 class="h5 mb-2">Abstract</h2>
-    <p class="lead mb-0">ComposerFlow is a controllable music generation framework that aligns global style prompts and optional lyric guidance to produce coherent multi-model audio outputs. This demo showcases side-by-side generations from five systems given the same title, global style prompt, and lyrics, enabling qualitative comparison by ear.</p>
+    <p class="lead mb-0">Open-source end-to-end song generators have emerged in the wake of commercial systems like Suno, offering one-shot music with lyrics but at the cost of large datasets and substantial compute. We propose ComposerFlow, a hierarchical pipeline that composes songs by chaining four specialized components—lyrics-to-melody, melody harmonization, singing-voice synthesis (SVS), and vocal-to-backing generation. This modular design is resource-efficient (single RTX 3090; ~6k hours of data) and editable: users can revise intermediate results (e.g., melody, chords, vocal) and deterministically regenerate all downstream audio. Leveraging SVS further mitigates common end-to-end issues such as unstable vocal timbre and phoneme errors. We evaluate our pipeline against representative end-to-end baselines and find comparable perceptual quality despite significantly lower training demands. We release audio demos at https://composerflow.github.io/web/. Our results suggest that modular, controllable pipelines are a practical alternative to monolithic song models, enabling rapid iteration and reliable production on accessible hardware.</p>
   </section>
   <div id="table-explainer" class="alert alert-info small mb-0">
     This table lists demo tracks. Each row provides a title, a global style prompt, optional expandable lyrics, and five audio renderings produced by different models for quick A/B listening.
@@ -60,11 +60,11 @@ td {
           <th style="min-width:220px;">Title</th>
           <th style="min-width:260px;">Global Style Prompt</th>
           <th style="min-width:280px;">Lyrics</th>
-          <th style="min-width:220px;">Model 1<br><small>ComposerFlow</small></th>
-          <th style="min-width:220px;">Model 2<br><small>Acestep</small></th>
-          <th style="min-width:220px;">Model 3<br><small>DiffRhythm</small></th>
-          <th style="min-width:220px;">Model 4<br><small>Levo</small></th>
-          <th style="min-width:220px;">Model 5<br><small>Suno</small></th>
+          <th style="min-width:220px;">ComposerFlow<br></th>
+          <th style="min-width:220px;">Acestep<br></th>
+          <th style="min-width:220px;">DiffRhythm<br></th>
+          <th style="min-width:220px;">Levo<br></th>
+          <th style="min-width:220px;">Suno<br></th>
         </tr>
       </thead>
       <tbody>
@@ -82,54 +82,398 @@ td {
           </td>
           <td class="text-left">
             <span class="badge badge-info">Pop</span>
-            <div class="small text-muted">bright, upbeat, 120 BPM, female vocal, lush pads, side-chain pump</div>
+            <div class="small text-muted">An emotional indie rock track with echoing guitars, steady drums, and heartfelt female vocals. The mood is reflective and guiding, like the beacon of a lighthouse during a night voyage.</div>
           </td>
           <td class="p-0">
             <div id="lyric-1" class="collapse">
               <div class="p-2 text-left" style="white-space:pre-wrap;">
+                [Verse]
                 黑夜裡只有浪潮低語
                 遠方微光閃爍在心底
                 船身隨夢想搖晃前行
                 星辰引領未知的路徑
                 微光指引堅定的方向
                 心靈不再迷失無助
+                [Chorus]
                 夜航燈塔照亮旅程
                 黑暗中不再孤單
                 希望在波濤中閃耀
                 勇氣陪我直到天明
+                [Outro]
                 燈光依舊守護夜色
                 心靈找到歸屬的岸
               </div>
             </div>
           </td>
           <td>
-            <audio controls preload="none" style="width:200px;">
-              <source src="ComposerFlow_samples/mixed_25.wav" type="audio/mpeg">
+            <audio controls preload="metadata" style="width:200px;">
+              <source src="ComposerFlow_samples/mixed_25.wav" type="audio/wav">
             </audio>
           </td>
           <td>
-            <audio controls preload="none" style="width:200px;">
-              <source src="acestep/25.wav" type="audio/mpeg">
+            <audio controls preload="metadata" style="width:200px;">
+              <source src="acestep/25.wav" type="audio/wav">
             </audio>
           </td>
           <td>
-            <audio controls preload="none" style="width:200px;">
-              <source src="diffrhythm/25_output.wav" type="audio/mpeg">
+            <audio controls preload="metadata" style="width:200px;">
+              <source src="diffrhythm/25_output.wav" type="audio/wav">
             </audio>
           </td>
           <td>
-            <audio controls preload="none" style="width:200px;">
-              <source src="levo/25.wav" type="audio/mpeg">
+            <audio controls preload="metadata" style="width:200px;">
+              <source src="levo/25.wav" type="audio/wav">
             </audio>
           </td>
           <td>
-            <audio controls preload="none" style="width:200px;">
-              <source src="suno/25.wav" type="audio/mpeg">
+            <audio controls preload="metadata" style="width:200px;">
+              <source src="suno/25.wav" type="audio/wav">
             </audio>
           </td>
         </tr>
 
-        
+        <!-- === ROW 2 === -->
+        <tr>
+          <td>2</td>
+          <td class="text-left">
+            Track 26
+            <div>
+              <button class="btn btn-link btn-sm p-0" data-toggle="collapse" data-target="#lyric-26" aria-expanded="false" aria-controls="lyric-26">
+                <i class="bi bi-music-note-list"></i> Show lyrics
+              </button>
+            </div>
+          </td>
+          <td class="text-left">
+            <span class="badge badge-secondary">Demo</span>
+            <div class="small text-muted">Auto-added demo entry.</div>
+          </td>
+          <td class="p-0">
+            <div id="lyric-26" class="collapse">
+              <div class="p-2 text-left" style="white-space:pre-wrap;">
+                
+              </div>
+            </div>
+          </td>
+          <td>
+            <audio controls preload="metadata" style="width:200px;">
+              <source src="ComposerFlow_samples/mixed_26.wav" type="audio/wav">
+            </audio>
+          </td>
+          <td>
+            <audio controls preload="metadata" style="width:200px;">
+              <source src="acestep/26.wav" type="audio/wav">
+            </audio>
+          </td>
+          <td>
+            <audio controls preload="metadata" style="width:200px;">
+              <source src="diffrhythm/26_output.wav" type="audio/wav">
+            </audio>
+          </td>
+          <td>
+            <audio controls preload="metadata" style="width:200px;">
+              <source src="levo/26.wav" type="audio/wav">
+            </audio>
+          </td>
+          <td>
+            <audio controls preload="metadata" style="width:200px;">
+              <source src="suno/26.wav" type="audio/wav">
+            </audio>
+          </td>
+        </tr>
+
+        <!-- === ROW 3 === -->
+        <tr>
+          <td>3</td>
+          <td class="text-left">
+            Track 29
+            <div>
+              <button class="btn btn-link btn-sm p-0" data-toggle="collapse" data-target="#lyric-29" aria-expanded="false" aria-controls="lyric-29">
+                <i class="bi bi-music-note-list"></i> Show lyrics
+              </button>
+            </div>
+          </td>
+          <td class="text-left">
+            <span class="badge badge-secondary">Demo</span>
+            <div class="small text-muted">Auto-added demo entry.</div>
+          </td>
+          <td class="p-0">
+            <div id="lyric-29" class="collapse">
+              <div class="p-2 text-left" style="white-space:pre-wrap;">
+                
+              </div>
+            </div>
+          </td>
+          <td>
+            <audio controls preload="metadata" style="width:200px;">
+              <source src="ComposerFlow_samples/mixed_29.wav" type="audio/wav">
+            </audio>
+          </td>
+          <td>
+            <audio controls preload="metadata" style="width:200px;">
+              <source src="acestep/29.wav" type="audio/wav">
+            </audio>
+          </td>
+          <td>
+            <audio controls preload="metadata" style="width:200px;">
+              <source src="diffrhythm/29_output.wav" type="audio/wav">
+            </audio>
+          </td>
+          <td>
+            <audio controls preload="metadata" style="width:200px;">
+              <source src="levo/29.wav" type="audio/wav">
+            </audio>
+          </td>
+          <td>
+            <audio controls preload="metadata" style="width:200px;">
+              <source src="suno/29.wav" type="audio/wav">
+            </audio>
+          </td>
+        </tr>
+
+        <!-- === ROW 4 === -->
+        <tr>
+          <td>4</td>
+          <td class="text-left">
+            Track 31
+            <div>
+              <button class="btn btn-link btn-sm p-0" data-toggle="collapse" data-target="#lyric-31" aria-expanded="false" aria-controls="lyric-31">
+                <i class="bi bi-music-note-list"></i> Show lyrics
+              </button>
+            </div>
+          </td>
+          <td class="text-left">
+            <span class="badge badge-secondary">Demo</span>
+            <div class="small text-muted">Auto-added demo entry.</div>
+          </td>
+          <td class="p-0">
+            <div id="lyric-31" class="collapse">
+              <div class="p-2 text-left" style="white-space:pre-wrap;">
+                
+              </div>
+            </div>
+          </td>
+          <td>
+            <audio controls preload="metadata" style="width:200px;">
+              <source src="ComposerFlow_samples/mixed_31.wav" type="audio/wav">
+            </audio>
+          </td>
+          <td>
+            <audio controls preload="metadata" style="width:200px;">
+              <source src="acestep/31.wav" type="audio/wav">
+            </audio>
+          </td>
+          <td>
+            <audio controls preload="metadata" style="width:200px;">
+              <source src="diffrhythm/31_output.wav" type="audio/wav">
+            </audio>
+          </td>
+          <td>
+            <audio controls preload="metadata" style="width:200px;">
+              <source src="levo/31.wav" type="audio/wav">
+            </audio>
+          </td>
+          <td>
+            <audio controls preload="metadata" style="width:200px;">
+              <source src="suno/31.wav" type="audio/wav">
+            </audio>
+          </td>
+        </tr>
+
+        <!-- === ROW 5 === -->
+        <tr>
+          <td>5</td>
+          <td class="text-left">
+            Track 36
+            <div>
+              <button class="btn btn-link btn-sm p-0" data-toggle="collapse" data-target="#lyric-36" aria-expanded="false" aria-controls="lyric-36">
+                <i class="bi bi-music-note-list"></i> Show lyrics
+              </button>
+            </div>
+          </td>
+          <td class="text-left">
+            <span class="badge badge-secondary">Demo</span>
+            <div class="small text-muted">Auto-added demo entry.</div>
+          </td>
+          <td class="p-0">
+            <div id="lyric-36" class="collapse">
+              <div class="p-2 text-left" style="white-space:pre-wrap;">
+                
+              </div>
+            </div>
+          </td>
+          <td>
+            <audio controls preload="metadata" style="width:200px;">
+              <source src="ComposerFlow_samples/mixed_36.wav" type="audio/wav">
+            </audio>
+          </td>
+          <td>
+            <audio controls preload="metadata" style="width:200px;">
+              <source src="acestep/36.wav" type="audio/wav">
+            </audio>
+          </td>
+          <td>
+            <audio controls preload="metadata" style="width:200px;">
+              <source src="diffrhythm/36_output.wav" type="audio/wav">
+            </audio>
+          </td>
+          <td>
+            <audio controls preload="metadata" style="width:200px;">
+              <source src="levo/36.wav" type="audio/wav">
+            </audio>
+          </td>
+          <td>
+            <audio controls preload="metadata" style="width:200px;">
+              <source src="suno/36.wav" type="audio/wav">
+            </audio>
+          </td>
+        </tr>
+
+        <!-- === ROW 6 === -->
+        <tr>
+          <td>6</td>
+          <td class="text-left">
+            Track 45
+            <div>
+              <button class="btn btn-link btn-sm p-0" data-toggle="collapse" data-target="#lyric-45" aria-expanded="false" aria-controls="lyric-45">
+                <i class="bi bi-music-note-list"></i> Show lyrics
+              </button>
+            </div>
+          </td>
+          <td class="text-left">
+            <span class="badge badge-secondary">Demo</span>
+            <div class="small text-muted">Auto-added demo entry.</div>
+          </td>
+          <td class="p-0">
+            <div id="lyric-45" class="collapse">
+              <div class="p-2 text-left" style="white-space:pre-wrap;">
+                
+              </div>
+            </div>
+          </td>
+          <td>
+            <audio controls preload="metadata" style="width:200px;">
+              <source src="ComposerFlow_samples/mixed_45.wav" type="audio/wav">
+            </audio>
+          </td>
+          <td>
+            <audio controls preload="metadata" style="width:200px;">
+              <source src="acestep/45.wav" type="audio/wav">
+            </audio>
+          </td>
+          <td>
+            <audio controls preload="metadata" style="width:200px;">
+              <source src="diffrhythm/45_output.wav" type="audio/wav">
+            </audio>
+          </td>
+          <td>
+            <audio controls preload="metadata" style="width:200px;">
+              <source src="levo/45.wav" type="audio/wav">
+            </audio>
+          </td>
+          <td>
+            <audio controls preload="metadata" style="width:200px;">
+              <source src="suno/45.wav" type="audio/wav">
+            </audio>
+          </td>
+        </tr>
+
+        <!-- === ROW 7 === -->
+        <tr>
+          <td>7</td>
+          <td class="text-left">
+            Track 78
+            <div>
+              <button class="btn btn-link btn-sm p-0" data-toggle="collapse" data-target="#lyric-78" aria-expanded="false" aria-controls="lyric-78">
+                <i class="bi bi-music-note-list"></i> Show lyrics
+              </button>
+            </div>
+          </td>
+          <td class="text-left">
+            <span class="badge badge-secondary">Demo</span>
+            <div class="small text-muted">Auto-added demo entry.</div>
+          </td>
+          <td class="p-0">
+            <div id="lyric-78" class="collapse">
+              <div class="p-2 text-left" style="white-space:pre-wrap;">
+                
+              </div>
+            </div>
+          </td>
+          <td>
+            <audio controls preload="metadata" style="width:200px;">
+              <source src="ComposerFlow_samples/mixed_78.wav" type="audio/wav">
+            </audio>
+          </td>
+          <td>
+            <audio controls preload="metadata" style="width:200px;">
+              <source src="acestep/78.wav" type="audio/wav">
+            </audio>
+          </td>
+          <td>
+            <audio controls preload="metadata" style="width:200px;">
+              <source src="diffrhythm/78_output.wav" type="audio/wav">
+            </audio>
+          </td>
+          <td>
+            <audio controls preload="metadata" style="width:200px;">
+              <source src="levo/78.wav" type="audio/wav">
+            </audio>
+          </td>
+          <td>
+            <audio controls preload="metadata" style="width:200px;">
+              <source src="suno/78.wav" type="audio/wav">
+            </audio>
+          </td>
+        </tr>
+
+        <!-- === ROW 8 === -->
+        <tr>
+          <td>8</td>
+          <td class="text-left">
+            Track 124
+            <div>
+              <button class="btn btn-link btn-sm p-0" data-toggle="collapse" data-target="#lyric-124" aria-expanded="false" aria-controls="lyric-124">
+                <i class="bi bi-music-note-list"></i> Show lyrics
+              </button>
+            </div>
+          </td>
+          <td class="text-left">
+            <span class="badge badge-secondary">Demo</span>
+            <div class="small text-muted">Auto-added demo entry.</div>
+          </td>
+          <td class="p-0">
+            <div id="lyric-124" class="collapse">
+              <div class="p-2 text-left" style="white-space:pre-wrap;">
+                
+              </div>
+            </div>
+          </td>
+          <td>
+            <audio controls preload="metadata" style="width:200px;">
+              <source src="ComposerFlow_samples/mixed_124.wav" type="audio/wav">
+            </audio>
+          </td>
+          <td>
+            <audio controls preload="metadata" style="width:200px;">
+              <source src="acestep/124.wav" type="audio/wav">
+            </audio>
+          </td>
+          <td>
+            <audio controls preload="metadata" style="width:200px;">
+              <source src="diffrhythm/124_output.wav" type="audio/wav">
+            </audio>
+          </td>
+          <td>
+            <audio controls preload="metadata" style="width:200px;">
+              <source src="levo/124.wav" type="audio/wav">
+            </audio>
+          </td>
+          <td>
+            <audio controls preload="metadata" style="width:200px;">
+              <source src="suno/124.wav" type="audio/wav">
+            </audio>
+          </td>
+        </tr>
 
 <!-- === SCRIPTS (Bootstrap collapse needs these) === -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
