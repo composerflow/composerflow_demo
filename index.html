@@ -19,6 +19,7 @@ td {
       padding: 10px;
       text-align: center;
 }
+
 /* Keep text readable and give players room */
 .model-col { min-width: 340px; }
 .model-col audio { width: 100%; }
@@ -57,7 +58,13 @@ td, th { padding: 12px; }
   .lyrics-col { min-width: 160px; }
   .model-col { min-width: 280px; }
 }
-
+</style>
+<style>
+  .pre-lines {
+    white-space: pre-line;   /* keep \n, collapse spaces */
+    font-family: monospace;
+    text-align: left;
+  }
 </style>
 </head>
 
@@ -120,7 +127,7 @@ td, th { padding: 12px; }
               </button>
             </div>
             <div id="lyric-1" class="collapse">
-              <div class="p-2 text-left" style="white-space:pre-wrap;">
+              <div class="p-2 small pre-lines" style="max-height:200px; overflow-y:auto;">
                 [Verse]
                 黑夜裡只有浪潮低語
                 遠方微光閃爍在心底
@@ -180,7 +187,7 @@ td, th { padding: 12px; }
               </button>
             </div>
             <div id="lyric-26" class="collapse">
-              <div class="p-2 text-left" style="white-space:pre-wrap;">
+              <div class="p-2 small pre-lines" style="max-height:200px; overflow-y:auto;">
                 [Verse]
                 時間在掌心緩緩流動
                 沙粒劃過無聲的夢境
@@ -240,7 +247,7 @@ td, th { padding: 12px; }
               </button>
             </div>
             <div id="lyric-29" class="collapse">
-              <div class="p-2 text-left" style="white-space:pre-wrap;">
+              <div class="p-2 small pre-lines" style="max-height:200px; overflow-y:auto;">
                 [Verse]
                 暮鼓聲聲震動山谷
                 晨鐘悠悠喚醒大地
@@ -302,7 +309,7 @@ td, th { padding: 12px; }
               </button>
             </div>
             <div id="lyric-31" class="collapse">
-              <div class="p-2 text-left" style="white-space:pre-wrap;">
+              <div class="p-2 small pre-lines" style="max-height:200px; overflow-y:auto;">
                 [Verse]
                 江水悠悠托起孤舟
                 白霧籠罩故鄉的岸
@@ -364,7 +371,7 @@ td, th { padding: 12px; }
               </button>
             </div>
             <div id="lyric-36" class="collapse">
-              <div class="p-2 text-left" style="white-space:pre-wrap;">
+              <div class="p-2 small pre-lines" style="max-height:200px; overflow-y:auto;">
                 [Verse]
                 夜色映照無盡的街
                 霓虹閃爍掩蓋心事
@@ -426,7 +433,7 @@ td, th { padding: 12px; }
               </button>
             </div>
             <div id="lyric-45" class="collapse">
-              <div class="p-2 text-left" style="white-space:pre-wrap;">
+              <div class="p-2 small pre-lines" style="max-height:200px; overflow-y:auto;">
                 [Verse]
                 晨曦灑落喚醒的時光
                 腳步輕快迎向未來
@@ -488,7 +495,7 @@ td, th { padding: 12px; }
               </button>
             </div>
             <div id="lyric-78" class="collapse">
-              <div class="p-2 text-left" style="white-space:pre-wrap;">
+              <div class="p-2 small pre-lines" style="max-height:200px; overflow-y:auto;">
                 [Verse]
                 孤城靜夜無聲的呼吸
                 燈火映照破碎的夢
@@ -550,7 +557,7 @@ td, th { padding: 12px; }
               </button>
             </div>
             <div id="lyric-124" class="collapse">
-              <div class="p-2 text-left" style="white-space:pre-wrap;">
+              <div class="p-2 small pre-lines" style="max-height:200px; overflow-y:auto;">
                 [Verse]
                 夏日微風吹散雲彩
                 海浪拍擊湧起節奏
@@ -634,7 +641,7 @@ td, th { padding: 12px; }
           <td>1</td>
           
           <td class="text-left" rowspan="5" style="text-align: left;">
-            <div class="p-2 small" style="white-space:pre-wrap; font-family: monospace; max-height: 200px; overflow-y: auto; text-align: left;">
+            <div class="p-2 small pre-lines" style="max-height:200px; overflow-y:auto;">
               [intro]
               Acoustic guitar arpeggios with light piano harmonics, soft fade-in.
               [Verse]
@@ -652,7 +659,7 @@ td, th { padding: 12px; }
               </button>
             </div>
             <div id="shared-chord-lyrics" class="collapse">
-              <div class="p-2 small" style="white-space:pre-wrap; font-family: monospace; max-height: 200px; overflow-y: auto; text-align: left;">
+              <div class="p-2 small pre-lines" style="max-height:200px; overflow-y:auto;">
                   [Verse]
                   你的過去 我不曾參與
                   你的未來 我奉陪到底
