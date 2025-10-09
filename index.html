@@ -1767,106 +1767,276 @@ td, th { padding: 12px; }
           </td>
         </tr>
         <!-- === TEXT × CHORDS MATRIX (3×3) === -->
+        <!-- === 3×4 MATRIX: Lyrics × (3 Local Text Prompts), Rows = Chord Progressions === -->
         <div class="container my-5">
           <div class="d-flex justify-content-between align-items-center mb-2">
-            <h4 class="m-0">Text × Chord Progression Matrix (3×3)</h4>
-            <small class="text-muted">Nine renders: 3 text prompts × 3 chord progressions</small>
+            <h4 class="m-0">Chord Progression × Local Text Prompt (3×4)</h4>
+            <div class="small">
+              <button class="btn btn-sm btn-outline-primary mr-2" data-toggle="collapse" data-target="#prompt-A,#prompt-B,#prompt-C">
+                <i class="bi bi-arrows-expand"></i> Toggle all text prompts
+              </button>
+            </div>
           </div>
 
           <div class="alert alert-light border small mb-3">
-            <strong>Legend:</strong>
-            <span class="badge badge-primary">Text A</span> <span class="text-monospace">("Adventure pop", etc.)</span> ·
-            <span class="badge badge-primary">Text B</span> <span class="text-monospace">("Slow ballad", etc.)</span> ·
-            <span class="badge badge-primary">Text C</span> <span class="text-monospace">("Trip-hop dark", etc.)</span>
-            <br class="d-none d-lg-block">
-            <span class="badge badge-success">Chord I</span> <span class="text-monospace">("Pop Standard")</span> ·
-            <span class="badge badge-warning">Chord II</span> <span class="text-monospace">("Pop Complex")</span> ·
-            <span class="badge badge-info">Chord III</span> <span class="text-monospace">("R&amp;B")</span>
+            <strong>How to read:</strong> The first column shows the <em>lyrics</em> (shared). Each row fixes a <em>chord progression</em> (toggle it per row).
+            Each of the three right columns plays audio with a different <em>local text prompt</em> (toggle prompt text per column).
           </div>
 
           <div class="table-responsive">
             <table class="table table-sm table-bordered align-middle">
-              <caption class="text-left">Each cell is conditioned on the column’s text prompt and the row’s chord progression.</caption>
+              <caption class="text-left">3 chord progressions × (Lyrics + 3 local text prompts). Chords and prompts are collapsible.</caption>
               <thead class="thead-light">
                 <tr>
-                  <th class="sticky-col-1" style="min-width:150px;">Chord \\ Text</th>
-                  <th class="text-center"><span class="badge badge-primary">Text A</span></th>
-                  <th class="text-center"><span class="badge badge-primary">Text B</span></th>
-                  <th class="text-center"><span class="badge badge-primary">Text C</span></th>
+                  <th class="sticky-col-1" style="min-width:260px;">Lyrics (shared)</th>
+                  <th class="text-center" style="min-width:260px;">
+                    <span class="badge badge-primary">Text A</span>
+                    <div>
+                      <button class="btn btn-link btn-sm p-0" data-toggle="collapse" data-target="#prompt-A" aria-expanded="false" aria-controls="prompt-A">
+                        <i class="bi bi-card-text"></i> Show text
+                      </button>
+                    </div>
+                  </th>
+                  <th class="text-center" style="min-width:260px;">
+                    <span class="badge badge-primary">Text B</span>
+                    <div>
+                      <button class="btn btn-link btn-sm p-0" data-toggle="collapse" data-target="#prompt-B" aria-expanded="false" aria-controls="prompt-B">
+                        <i class="bi bi-card-text"></i> Show text
+                      </button>
+                    </div>
+                  </th>
+                  <th class="text-center" style="min-width:260px;">
+                    <span class="badge badge-primary">Text C</span>
+                    <div>
+                      <button class="btn btn-link btn-sm p-0" data-toggle="collapse" data-target="#prompt-C" aria-expanded="false" aria-controls="prompt-C">
+                        <i class="bi bi-card-text"></i> Show text
+                      </button>
+                    </div>
+                  </th>
                 </tr>
               </thead>
+
               <tbody>
-                <!-- Row 1: chord_1 -->
+                <!-- === FIRST ROW (Chord 1) === -->
                 <tr>
-                  <th class="sticky-col-1">
-                    <span class="badge badge-success">Chord I</span>
-                    <div class="small text-muted">folder: <code>chord_1/</code></div>
-                  </th>
-                  <td class="text-center">
-                    <audio controls preload="metadata" style="width: 260px;">
+                  <!-- Lyrics: one cell spanning all 3 rows -->
+                  <td class="sticky-col-1 align-top p-0" rowspan="3">
+                    <div class="p-2 text-left">
+                      <button class="btn btn-link btn-sm p-0" data-toggle="collapse" data-target="#matrix-lyrics" aria-expanded="true" aria-controls="matrix-lyrics">
+                        <i class="bi bi-music-note-list"></i> Show lyrics
+                      </button>
+                    </div>
+                    <div id="matrix-lyrics" class="collapse show">
+                      <div class="p-2 small pre-lines" style="max-height:280px; overflow-y:auto;">
+                        [Verse]
+                        你的過去 我不曾參與
+                        nǐ de guò qù wǒ bù céng cān yù
+                        你的未來 我奉陪到底
+                        nǐ de wèi lái wǒ fèng péi dào dǐ
+                        戀愛這種事 和你一起 才有意思
+                        liàn ài zhè zhǒng shì hé nǐ yī qǐ cái yǒu yì si
+                        你卻說 你想要靜靜
+                        nǐ què shuō nǐ xiǎng yào jìng jìng
+                        車速再快 也快不到人生的難題
+                        chē sù zài kuài yě kuài bù dào rén shēng de nán tí
+                        已經看不見你 的車尾燈
+                        yǐ jīng kàn bù jiàn nǐ de chē wěi dēng
+                        我獨自被留在台七乙
+                        wǒ dú zì bèi liú zài tái qī yǐ
+
+                        [Chorus]
+                        你是我永遠過不去的彎
+                        nǐ shì wǒ yǒng yuǎn guò bù qù de wān
+                        如何卡普 也只會自摔
+                        rú hé kǎ pǔ yě zhǐ huì zì shuāi
+                        我們的愛 少了一半
+                        wǒ men de ài shǎo le yí bàn
+                        過期誓言 像優惠券 已經無法兌換
+                        guò qí shì yán xiàng yōu huì quàn yǐ jīng wú fǎ duì huàn
+                        你是我永遠過不去的彎
+                        nǐ shì wǒ yǒng yuǎn guò bù qù de wān
+                        我的無奈 被你向外拍
+                        wǒ de wú nài bèi nǐ xiàng wài pāi
+                        超貸的愛 要怎麼孩
+                        chāo dài de ài yào zěn me hái
+
+                        [Outro]
+                        莫忘初衷
+                        mò wàng chū zhōng
+                        是最後的依賴
+                        shì zuì hòu de yī lài
+                      </div>
+                    </div>
+                  </td>
+
+                  <!-- Text A/B/C audio for chord_1 -->
+                  <td class="text-center align-top">
+                    <div class="mb-1">
+                      <span class="badge badge-success">Chord I</span>
+                      <button class="btn btn-link btn-sm p-0 ml-2" data-toggle="collapse" data-target="#prog-row-1" aria-expanded="false" aria-controls="prog-row-1">
+                        <i class="bi bi-music-note-beamed"></i> Show progression
+                      </button>
+                    </div>
+                    <audio controls preload="metadata" style="width: 240px;">
                       <source src="/home/fundwotsai/composerflow_demo/chord_1/mixed_0 (1).wav" type="audio/wav">
                     </audio>
+
+                    <!-- Row 1 chord progression (shared; toggled from any cell in this row) -->
+                    <div id="prog-row-1" class="collapse mt-2 text-left">
+                      <div class="p-2 small pre-lines border rounded" style="max-height:200px; overflow-y:auto;">
+                        <!-- paste the progression for Chord I -->
+                        0.000 0.531 D:min7
+                        0.531 1.062 D:min7
+                        ...
+                      </div>
+                    </div>
                   </td>
-                  <td class="text-center">
-                    <audio controls preload="metadata" style="width: 260px;">
+
+                  <td class="text-center align-top">
+                    <div class="mb-1">
+                      <span class="badge badge-success">Chord I</span>
+                      <button class="btn btn-link btn-sm p-0 ml-2" data-toggle="collapse" data-target="#prog-row-1" aria-expanded="false" aria-controls="prog-row-1">
+                        Show progression
+                      </button>
+                    </div>
+                    <audio controls preload="metadata" style="width: 240px;">
                       <source src="/home/fundwotsai/composerflow_demo/chord_1/mixed_1 (1).wav" type="audio/wav">
                     </audio>
                   </td>
-                  <td class="text-center">
-                    <audio controls preload="metadata" style="width: 260px;">
+
+                  <td class="text-center align-top">
+                    <div class="mb-1">
+                      <span class="badge badge-success">Chord I</span>
+                      <button class="btn btn-link btn-sm p-0 ml-2" data-toggle="collapse" data-target="#prog-row-1" aria-expanded="false" aria-controls="prog-row-1">
+                        Show progression
+                      </button>
+                    </div>
+                    <audio controls preload="metadata" style="width: 240px;">
                       <source src="/home/fundwotsai/composerflow_demo/chord_1/mixed_2 (1).wav" type="audio/wav">
                     </audio>
                   </td>
                 </tr>
 
-                <!-- Row 2: chord_2 -->
+                <!-- === SECOND ROW (Chord 2) === -->
                 <tr>
-                  <th class="sticky-col-1">
-                    <span class="badge badge-warning">Chord II</span>
-                    <div class="small text-muted">folder: <code>chord_2/</code></div>
-                  </th>
-                  <td class="text-center">
-                    <audio controls preload="metadata" style="width: 260px;">
-                      <source src="/home/fundwotsai/composerflow_demo/chord_2/mixed_0 (1).wav" type="audio/wav">
+                  <td class="text-center align-top">
+                    <div class="mb-1">
+                      <span class="badge badge-warning">Chord II</span>
+                      <button class="btn btn-link btn-sm p-0 ml-2" data-toggle="collapse" data-target="#prog-row-2" aria-expanded="false" aria-controls="prog-row-2">
+                        <i class="bi bi-music-note-beamed"></i> Show progression
+                      </button>
+                    </div>
+                    <audio controls preload="metadata" style="width: 240px;">
+                      <source src="chord_2/text_A.wav" type="audio/wav">
+                    </audio>
+                    <div id="prog-row-2" class="collapse mt-2 text-left">
+                      <div class="p-2 small pre-lines border rounded" style="max-height:200px; overflow-y:auto;">
+                        <!-- paste the progression for Chord II -->
+                        0.000 0.531 D:sus2
+                        0.531 1.062 D:sus2
+                        ...
+                      </div>
+                    </div>
+                  </td>
+                  <td class="text-center align-top">
+                    <div class="mb-1">
+                      <span class="badge badge-warning">Chord II</span>
+                      <button class="btn btn-link btn-sm p-0 ml-2" data-toggle="collapse" data-target="#prog-row-2">Show progression</button>
+                    </div>
+                    <audio controls preload="metadata" style="width: 240px;">
+                      <source src="chord_2/text_B.wav" type="audio/wav">
                     </audio>
                   </td>
-                  <td class="text-center">
-                    <audio controls preload="metadata" style="width: 260px;">
-                      <source src="/home/fundwotsai/composerflow_demo/chord_2/mixed_1 (1).wav" type="audio/wav">
-                    </audio>
-                  </td>
-                  <td class="text-center">
-                    <audio controls preload="metadata" style="width: 260px;">
-                      <source src="/home/fundwotsai/composerflow_demo/chord_2/mixed_2 (1).wav" type="audio/wav">
+                  <td class="text-center align-top">
+                    <div class="mb-1">
+                      <span class="badge badge-warning">Chord II</span>
+                      <button class="btn btn-link btn-sm p-0 ml-2" data-toggle="collapse" data-target="#prog-row-2">Show progression</button>
+                    </div>
+                    <audio controls preload="metadata" style="width: 240px;">
+                      <source src="chord_2/text_C.wav" type="audio/wav">
                     </audio>
                   </td>
                 </tr>
 
-                <!-- Row 3: chord_3 -->
+                <!-- === THIRD ROW (Chord 3) === -->
                 <tr>
-                  <th class="sticky-col-1">
-                    <span class="badge badge-info">Chord III</span>
-                    <div class="small text-muted">folder: <code>chord_3/</code></div>
-                  </th>
-                  <td class="text-center">
-                    <audio controls preload="metadata" style="width: 260px;">
-                      <source src="/home/fundwotsai/composerflow_demo/chord_3/mixed_0 (1).wav" type="audio/wav">
+                  <td class="text-center align-top">
+                    <div class="mb-1">
+                      <span class="badge badge-info">Chord III</span>
+                      <button class="btn btn-link btn-sm p-0 ml-2" data-toggle="collapse" data-target="#prog-row-3" aria-expanded="false" aria-controls="prog-row-3">
+                        <i class="bi bi-music-note-beamed"></i> Show progression
+                      </button>
+                    </div>
+                    <audio controls preload="metadata" style="width: 240px;">
+                      <source src="chord_3/text_A.wav" type="audio/wav">
+                    </audio>
+                    <div id="prog-row-3" class="collapse mt-2 text-left">
+                      <div class="p-2 small pre-lines border rounded" style="max-height:200px; overflow-y:auto;">
+                        <!-- paste the progression for Chord III -->
+                        0.000 0.531 D:min
+                        0.531 1.062 D:min
+                        ...
+                      </div>
+                    </div>
+                  </td>
+                  <td class="text-center align-top">
+                    <div class="mb-1">
+                      <span class="badge badge-info">Chord III</span>
+                      <button class="btn btn-link btn-sm p-0 ml-2" data-toggle="collapse" data-target="#prog-row-3">Show progression</button>
+                    </div>
+                    <audio controls preload="metadata" style="width: 240px;">
+                      <source src="chord_3/text_B.wav" type="audio/wav">
                     </audio>
                   </td>
-                  <td class="text-center">
-                    <audio controls preload="metadata" style="width: 260px;">
-                      <source src="/home/fundwotsai/composerflow_demo/chord_3/mixed_1 (1).wav" type="audio/wav">
-                    </audio>
-                  </td>
-                  <td class="text-center">
-                    <audio controls preload="metadata" style="width: 260px;">
-                      <source src="/home/fundwotsai/composerflow_demo/chord_3/mixed_2 (1).wav" type="audio/wav">
+                  <td class="text-center align-top">
+                    <div class="mb-1">
+                      <span class="badge badge-info">Chord III</span>
+                      <button class="btn btn-link btn-sm p-0 ml-2" data-toggle="collapse" data-target="#prog-row-3">Show progression</button>
+                    </div>
+                    <audio controls preload="metadata" style="width: 240px;">
+                      <source src="chord_3/text_C.wav" type="audio/wav">
                     </audio>
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
+
+          <!-- Column-level local text prompts (shared across rows) -->
+          <div id="prompt-A" class="collapse mt-2">
+            <div class="p-2 small pre-lines border rounded bg-white">
+              <strong>Local Text A</strong>
+              <div class="text-monospace">Paste your Text A prompt here...</div>
+            </div>
+          </div>
+
+          <div id="prompt-B" class="collapse mt-2">
+            <div class="p-2 small pre-lines border rounded bg-white">
+              <strong>Local Text B</strong>
+              <div class="text-monospace">Paste your Text B prompt here...</div>
+            </div>
+          </div>
+
+          <div id="prompt-C" class="collapse mt-2">
+            <div class="p-2 small pre-lines border rounded bg-white">
+              <strong>Local Text C</strong>
+              <div class="text-monospace">Paste your Text C prompt here...</div>
+            </div>
+          </div>
+        </div>
+
+
+  <!-- Optional: show exact local text prompts -->
+  <details class="mt-2">
+    <summary class="small text-muted">Show exact local text prompts</summary>
+    <pre class="pre-lines small mb-0">
+Text A: (paste local prompt A)
+Text B: (paste local prompt B)
+Text C: (paste local prompt C)
+    </pre>
+  </details>
+</div>
+
 
   <!-- Optional: show the exact text prompts -->
   <details class="mt-2">
